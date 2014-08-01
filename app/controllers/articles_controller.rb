@@ -5,6 +5,9 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  http_basic_authenticate_with name: "ruby", password: "password",
+    except: [:index, :show]
+
   def create
     @article = Article.new(article_params)
     if @article.save
